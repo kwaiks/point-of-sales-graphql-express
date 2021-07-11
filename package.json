@@ -1,0 +1,48 @@
+{
+  "name": "mesan-backend",
+  "version": "0.0.1",
+  "description": "Backend for Mesan",
+  "main": "server.js",
+  "author": "Alexander Jacquelline",
+  "license": "MIT",
+  "scripts": {
+    "migrate": "MIGRATION=true knex migrate:make -x ts $1 --knexfile ./src/knexConfig.ts",
+    "seed": "MIGRATION=true knex seed:make -x ts $1 --knexfile ./src/knexConfig.ts",
+    "migrate:latest": "MIGRATION=true knex migrate:latest  --knexfile ./src/knexConfig.ts",
+    "migrate:rollback": "MIGRATION=true knex migrate:rollback  --knexfile ./src/knexConfig.ts",
+    "seed:run": "MIGRATION=true knex seed:run  --knexfile ./src/knexConfig.ts",
+    "start": "ts-node -r tsconfig-paths/register -r ts-node ./src/server.ts",
+    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "dev": "nodemon --config nodemon.json src/server.ts",
+    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/server.ts",
+    "test": "NODE_ENV=test mocha --exit -r ts-node/register --require tsconfig-paths/register 'test/**/*.ts' "
+  },
+  "dependencies": {
+    "apollo-server": "^2.25.2",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.1",
+    "graphql-upload": "^12.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.6",
+    "objection": "^2.2.15",
+    "pg": "^8.6.0",
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^8.5.2",
+    "@types/uuid": "^8.3.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "tscpaths": "^0.0.9",
+    "typescript": "^4.3.4"
+  }
+}
